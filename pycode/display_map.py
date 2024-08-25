@@ -1,11 +1,8 @@
 import folium
 import psycopg2
-import json
-# from folium.utilities import JsCode
-# from folium.elements import EventHandler
 
 # Create a Folium map centered at an initial location
-m = folium.Map(location=[45.5017, -73.5673], zoom_start=12)  # Centered on Montreal
+m = folium.Map(location=[45.5017, -73.5673], zoom_start=12)
 
 # Database connection parameters
 db_params = {
@@ -38,14 +35,11 @@ WHERE ST_Intersects(
     ST_MakeEnvelope(%s, %s, %s, %s, 4326)  -- Adjust the SRID as per your data
 );
 """
-    # Define bbbox
-    # for findin bbox you can use bbox finder website
-    
-    # http://bboxfinder.com/
+    # Define bbox
+    # You can use bbox finder website: http://bboxfinder.com/
+    bounds = (-73.793964, 45.500933, -73.475189, 45.613197)
 
-    bounds = (-73.793964,45.500933,-73.475189,45.613197)
-
-    cursor.execute(query,bounds)
+    cursor.execute(query, bounds)
     features = [row[0] for row in cursor.fetchall()]
 
     # Close the cursor and connection
@@ -58,32 +52,16 @@ WHERE ST_Intersects(
         "features": features
     }
 
+    # Print the GeoJSON data for debugging
+    # print(geo_json_data)
+
     # Add GeoJSON data to the Folium map
     g = folium.GeoJson(geo_json_data).add_to(m)
 
-    # # JavaScript code for highlighting features
-    # highlight = JsCode(
-    #     """
-    #     function highlight(e) {
-    #         e.target.original_color = e.layer.options.color;
-    #         e.target.setStyle({ color: "green" });
-    #     }
-    #     """
-    # )
+    # ... [Optional JavaScript code for highlighting features]
 
-    # reset = JsCode(
-    #     """
-    #     function reset(e) {
-    #         e.target.setStyle({ color: e.target.original_color });
-    #     }
-    #     """
-    # )
-
-    # g.add_child(EventHandler("mouseover", highlight))
-    # g.add_child(EventHandler("mouseout", reset))
-    
-
-   
 except psycopg2.Error as e:
     print("Error connecting to PostgreSQL:", e)
-m
+
+# Display the map instantly using ipympl
+m.save('my_map.html')
