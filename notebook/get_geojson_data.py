@@ -6,7 +6,7 @@ import os
 url = "https://donnees.montreal.ca/dataset/4ad6baea-4d2c-460f-a8bf-5d000db498f7/resource/866a3dbc-8b59-48ff-866d-f2f9d3bbee9d/download/uniteevaluationfonciere.geojson.zip"
 
 # Define the directory where the file should be saved
-download_dir = "/home/navid/tut/geomap"  # Change this to your specific path
+download_dir = "/home/navid/tut/geodata/geomap"  # Change this to your specific path
 
 # Ensure the directory exists
 os.makedirs(download_dir, exist_ok=True)
