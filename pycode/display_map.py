@@ -38,6 +38,12 @@ WHERE ST_Intersects(
     ST_MakeEnvelope(%s, %s, %s, %s, 4326)  -- Adjust the SRID as per your data
 );
 """
+    # Define bbbox
+    # for findin bbox you can use bbox finder website
+    
+    # http://bboxfinder.com/
+
+    bounds = (-73.793964,45.500933,-73.475189,45.613197)
 
     cursor.execute(query,bounds)
     features = [row[0] for row in cursor.fetchall()]
