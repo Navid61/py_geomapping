@@ -1,0 +1,57 @@
+{
+    "help": "https://donnees.montreal.ca/api/3/action/help_show?name=datastore_search",
+    "success": true,
+    "result": {
+        "include_total": true,
+        "limit": 5,
+        "q": "title:jones",
+        "records_format": "objects",
+        "resource_id": "a2f43996-87f9-4423-b800-2f2c41ac326e",
+        "total_estimation_threshold": null,
+        "records": [],
+        "fields": [
+            {
+                "id": "_id",
+                "type": "int"
+            },
+            {
+                "id": "ID_SDSR",
+                "type": "text"
+            },
+            {
+                "id": "ADRESSE",
+                "type": "text"
+            },
+            {
+                "id": "DATE",
+                "type": "text"
+            },
+            {
+                "id": "MONTANT",
+                "type": "text"
+            },
+            {
+                "id": "TRANSACTION",
+                "type": "text"
+            },
+            {
+                "id": "ARRONDISSEMENT",
+                "type": "text"
+            },
+            {
+                "id": "CATEGORIE",
+                "type": "text"
+            },
+            {
+                "id": "rank",
+                "type": "float"
+            }
+        ],
+        "_links": {
+            "start": "/api/3/action/datastore_search?resource_id=a2f43996-87f9-4423-b800-2f2c41ac326e&limit=5&q=title%3Ajones",
+            "next": "/api/3/action/datastore_search?resource_id=a2f43996-87f9-4423-b800-2f2c41ac326e&limit=5&q=title%3Ajones&offset=5"
+        },
+        "total": 0,
+        "total_was_estimated": false
+    }
+}

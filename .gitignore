@@ -1,0 +1,10 @@
+geodata
+
+**/geodata/
+
+geodata/properties
+
+*.zip
+*.png
+
+.html
