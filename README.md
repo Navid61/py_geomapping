@@ -5,7 +5,8 @@
 
 ### Get Data address -- Downlod from here
 
-[https://donnees.montreal.ca/en/dataset/unites-evaluation-fonciere]
+
+[<h1>montreal data</h1>](https://donnees.montreal.ca/en/dataset/unites-evaluation-fonciere)
 
  
 ### Download data from url
@@ -16,7 +17,7 @@
 ### databsae name is montreal
 
 ```sql
-CREATE DATABASE montreal
+CREATE DATABASE montreal;
 ```
 
 ### Create table name montreal_properties for importing properties assessment geojosn file to that
@@ -63,4 +64,24 @@ SELECT PostGIS_Full_Version();
 SELECT * FROM pg_available_extensions WHERE name = 'postgis';
 ```
 
+### Create new polygon layer
+
+```sql
+CREATE TABLE study_area (
+    id SERIAL PRIMARY KEY,
+    geom GEOMETRY  -- This is the geometry column to store spatial data
+);
+```
+
 ### table name is montrieal_properties
+
+### clip sql query
+
+```sql
+CREATE TABLE clipped_properties AS
+SELECT p.*
+FROM montreal_properties p
+JOIN study_area s
+ON ST_Intersects(ST_Transform(p.geom, 32198), s.geom)
+WHERE ST_Within(ST_Transform(p.geom, 32198), s.geom);
+```

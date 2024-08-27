@@ -8,3 +8,5 @@ geodata/properties
 *.png
 
 *.html
+*.code-workspace
+
